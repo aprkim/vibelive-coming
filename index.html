@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeLive — Launching Soon</title>
+  <style>
+    :root {
+      --bg: #060606;
+      --bgCenter: #0a0a0a;
+      --text: #e6f1f2;
+      --muted: rgba(230,241,242,0.45);
+      --sub: rgba(230,241,242,0.55);
+      --border: rgba(230,241,242,0.10);
+      --inputBg: #151515;
+      --accent: #0EA5A4;
+      --accentHover: #0d9488;
+      --focus: rgba(14,165,164,0.30);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(ellipse at center, var(--bgCenter) 0%, var(--bg) 65%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    main {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .label {
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.625rem;
+    }
+
+    .sub {
+      font-size: 0.9375rem;
+      color: var(--sub);
+      margin-bottom: 3rem;
+    }
+
+    form {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 360px;
+      margin: 0 auto 0.75rem;
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+
+    input[type="email"] {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.9375rem;
+      padding: 0.7rem 0.85rem;
+      background: var(--inputBg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 0.625rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="email"]::placeholder { color: var(--muted); }
+
+    input[type="email"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--focus);
+    }
+
+    button {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 0.7rem 1.35rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 0.625rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    button:hover:not(:disabled) { background: var(--accentHover); }
+    button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    button:disabled { opacity: 0.5; cursor: default; }
+
+    .helper {
+      font-size: 0.75rem;
+      color: var(--muted);
+      min-height: 1.125rem;
+    }
+
+    .helper.success { color: var(--accent); }
+    .helper.error { color: #c46; }
+
+    @media (max-width: 480px) {
+      form { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="label">Launching soon</p>
+    <h1>Add real human presence to your vibecoded app.</h1>
+    <p class="sub">Live video support, built for vibecoders.</p>
+    <form id="f" novalidate>
+      <label for="e" class="sr-only">Email for early access</label>
+      <input type="email" id="e" placeholder="Email" autocomplete="email" required>
+      <button type="submit" id="b">Join</button>
+    </form>
+    <p class="helper" id="m" aria-live="polite">No spam. One email when we launch.</p>
+  </main>
+  <script>
+    document.getElementById('f').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = document.getElementById('e');
+      var msg = document.getElementById('m');
+      var btn = document.getElementById('b');
+      var val = input.value.trim();
+
+      msg.className = 'helper';
+
+      if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        msg.textContent = 'Enter a valid email.';
+        msg.classList.add('error');
+        input.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending\u2026';
+
+      var formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScaGo0AzpCppWjALJvnse4_8IzkdiopoKRkQFMl-z793HK8Fg/formResponse';
+      var body = new URLSearchParams();
+      body.append('entry.743989695', val);
+
+      fetch(formUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString()
+      }).then(function () {
+        input.value = '';
+        msg.textContent = "You\u2019re on the list.";
+        msg.classList.add('success');
+      }).catch(function () {
+        msg.textContent = 'Something went wrong. Try again.';
+        msg.classList.add('error');
+      }).finally(function () {
+        btn.textContent = 'Join';
+        btn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>
