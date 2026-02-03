@@ -22,16 +22,198 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(ellipse at center, var(--bgCenter) 0%, var(--bg) 65%);
+      background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem 1.5rem;
+      overflow: hidden;
     }
 
+    /* ── Animated Map Background ── */
+    .map-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      overflow: hidden;
+      background-color: var(--bg);
+    }
+
+    .world-map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: mapZoomPan 120s linear infinite;
+    }
+
+    /* Land fill layer */
+    .world-map::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background-image: url('./map.svg'), url('./map.svg');
+      background-size: 50% auto, 50% auto;
+      background-position: 0 center, 100% center;
+      background-repeat: no-repeat;
+      opacity: 0.035;
+      filter: grayscale(100%) brightness(1);
+      pointer-events: none;
+    }
+
+    /* Stroke/border layer */
+    .world-map::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background-image: url('./map.svg'), url('./map.svg');
+      background-size: 50% auto, 50% auto;
+      background-position: 0 center, 100% center;
+      background-repeat: no-repeat;
+      opacity: 0.18;
+      filter: grayscale(100%) invert(1) brightness(3) contrast(2);
+      pointer-events: none;
+    }
+
+    @keyframes mapZoomPan {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ── Connection lines canvas ── */
+    #connections-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── User Dots ── */
+    #dots-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .user-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 2.5s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .user-dot.connected {
+      box-shadow: 0 0 8px rgba(14,165,164,0.6);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.6;
+        box-shadow: 0 0 0 0 rgba(14,165,164,0.4);
+      }
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 0 6px rgba(14,165,164,0);
+      }
+    }
+
+    /* ── Video Chat Boxes ── */
+    .video-box {
+      position: absolute;
+      width: 64px;
+      height: 44px;
+      border-radius: 4px;
+      border: 1px solid rgba(14,165,164,0.5);
+      background: rgba(14,165,164,0.08);
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      transform: translate(-50%, -100%) scale(0.6);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      overflow: hidden;
+    }
+
+    .video-box.visible {
+      opacity: 1;
+      transform: translate(-50%, -100%) scale(1);
+    }
+
+    .video-box.closing {
+      opacity: 0;
+      transform: translate(-50%, -100%) scale(0.6);
+    }
+
+    .video-box-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* User silhouette icon */
+    .video-box-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(14,165,164,0.25);
+      position: relative;
+    }
+
+    .video-box-icon::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 12px;
+      border-radius: 50% 50% 0 0;
+      background: rgba(14,165,164,0.2);
+    }
+
+    /* Tiny "LIVE" indicator */
+    .video-box-live {
+      position: absolute;
+      top: 3px;
+      right: 4px;
+      font-size: 5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: rgba(14,165,164,0.7);
+      padding: 1px 3px;
+      border-radius: 2px;
+      line-height: 1;
+    }
+
+    /* ── Content ── */
     main {
+      position: relative;
+      z-index: 4;
       max-width: 500px;
       width: 100%;
       text-align: center;
@@ -126,6 +308,15 @@
   </style>
 </head>
 <body>
+  <!-- Animated Map Background -->
+  <div class="map-container">
+    <div class="world-map">
+      <canvas id="connections-canvas"></canvas>
+      <div id="dots-container"></div>
+    </div>
+  </div>
+
+  <!-- Foreground Content -->
   <main>
     <p class="label">Launching soon</p>
     <h1>Add real human presence to your vibecoded app.</h1>
@@ -137,7 +328,211 @@
     </form>
     <p class="helper" id="m" aria-live="polite">No spam. One email when we launch.</p>
   </main>
+
   <script>
+    // ── Dot positions on land masses ──
+    var dotPositions = [
+      { top: 36, left: 20 },  // Los Angeles
+      { top: 32, left: 28 },  // New York
+      { top: 26, left: 24 },  // Toronto
+      { top: 43, left: 21 },  // Mexico City
+      { top: 48, left: 26 },  // Bogota
+      { top: 63, left: 33 },  // Sao Paulo
+      { top: 75, left: 32 },  // Buenos Aires
+      { top: 26, left: 49 },  // London
+      { top: 29, left: 51 },  // Paris
+      { top: 26, left: 52 },  // Berlin
+      { top: 32, left: 58 },  // Istanbul
+      { top: 23, left: 58 },  // Moscow
+      { top: 41, left: 56 },  // Cairo
+      { top: 50, left: 52 },  // Lagos
+      { top: 70, left: 55 },  // Johannesburg
+      { top: 39, left: 63 },  // Dubai
+      { top: 42, left: 68 },  // Mumbai
+      { top: 36, left: 77 },  // Beijing
+      { top: 35, left: 81 },  // Seoul
+      { top: 34, left: 83 },  // Tokyo
+    ];
+
+    // Render dots
+    var dotsContainer = document.getElementById('dots-container');
+    var dotElements = [];
+    dotPositions.forEach(function (pos, i) {
+      var dot = document.createElement('div');
+      dot.className = 'user-dot';
+      dot.style.top = pos.top + '%';
+      dot.style.left = pos.left + '%';
+      dot.style.animationDelay = (i * 0.25) + 's';
+      dotsContainer.appendChild(dot);
+      dotElements.push(dot);
+    });
+
+    // ── Create video box elements (one per dot, reused) ──
+    var videoBoxes = [];
+    dotPositions.forEach(function (pos, i) {
+      var box = document.createElement('div');
+      box.className = 'video-box';
+      box.style.top = pos.top + '%';
+      box.style.left = pos.left + '%';
+      box.style.marginTop = '-10px'; // offset above the dot
+      box.innerHTML =
+        '<div class="video-box-inner">' +
+          '<div class="video-box-icon"></div>' +
+          '<span class="video-box-live">LIVE</span>' +
+        '</div>';
+      dotsContainer.appendChild(box);
+      videoBoxes.push(box);
+    });
+
+    // ── Connection lines ──
+    var canvas = document.getElementById('connections-canvas');
+    var ctx = canvas.getContext('2d');
+
+    var connections = [];
+    var MAX_CONNECTIONS = 3;
+
+    function resizeCanvas() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function pickPair() {
+      var attempts = 0;
+      while (attempts < 20) {
+        var a = Math.floor(Math.random() * dotPositions.length);
+        var b = Math.floor(Math.random() * dotPositions.length);
+        if (a === b) { attempts++; continue; }
+        var exists = connections.some(function (c) {
+          return (c.from === a && c.to === b) || (c.from === b && c.to === a);
+        });
+        if (!exists) return { from: a, to: b };
+        attempts++;
+      }
+      return null;
+    }
+
+    function spawnConnection() {
+      if (connections.length >= MAX_CONNECTIONS) return;
+      var pair = pickPair();
+      if (!pair) return;
+      var conn = {
+        from: pair.from,
+        to: pair.to,
+        life: 0,
+        maxLife: 4000 + Math.random() * 3000,  // 4–7 seconds
+        boxesShown: false,
+        boxesClosing: false
+      };
+      connections.push(conn);
+
+      // Show video boxes after line starts appearing (delay for line to draw in)
+      setTimeout(function () {
+        if (conn.life < conn.maxLife) {
+          videoBoxes[conn.from].classList.add('visible');
+          videoBoxes[conn.to].classList.add('visible');
+          conn.boxesShown = true;
+        }
+      }, 500);
+    }
+
+    var lastTime = performance.now();
+    var spawnTimer = 0;
+
+    function animate(now) {
+      var dt = now - lastTime;
+      lastTime = now;
+      spawnTimer += dt;
+
+      if (spawnTimer > 1500 + Math.random() * 1500) {
+        spawnConnection();
+        spawnTimer = 0;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Track which dots are currently connected
+      var connectedDots = {};
+
+      for (var i = connections.length - 1; i >= 0; i--) {
+        var c = connections[i];
+        c.life += dt;
+
+        // Start closing boxes before connection fully dies
+        if (!c.boxesClosing && c.life >= c.maxLife * 0.75) {
+          c.boxesClosing = true;
+          videoBoxes[c.from].classList.remove('visible');
+          videoBoxes[c.from].classList.add('closing');
+          videoBoxes[c.to].classList.remove('visible');
+          videoBoxes[c.to].classList.add('closing');
+        }
+
+        if (c.life >= c.maxLife) {
+          // Clean up boxes
+          videoBoxes[c.from].classList.remove('visible', 'closing');
+          videoBoxes[c.to].classList.remove('visible', 'closing');
+          connections.splice(i, 1);
+          continue;
+        }
+
+        connectedDots[c.from] = true;
+        connectedDots[c.to] = true;
+
+        // Fade: in 15%, full middle, out last 25%
+        var progress = c.life / c.maxLife;
+        var alpha;
+        if (progress < 0.15) {
+          alpha = progress / 0.15;
+        } else if (progress > 0.75) {
+          alpha = (1 - progress) / 0.25;
+        } else {
+          alpha = 1;
+        }
+        alpha *= 0.4;
+
+        var fromPos = dotPositions[c.from];
+        var toPos = dotPositions[c.to];
+        var x1 = (fromPos.left / 100) * canvas.width;
+        var y1 = (fromPos.top / 100) * canvas.height;
+        var x2 = (toPos.left / 100) * canvas.width;
+        var y2 = (toPos.top / 100) * canvas.height;
+
+        // Curved line
+        var midX = (x1 + x2) / 2;
+        var midY = (y1 + y2) / 2;
+        var dx = x2 - x1;
+        var dy = y2 - y1;
+        var cpX = midX - dy * 0.15;
+        var cpY = midY + dx * 0.15;
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.quadraticCurveTo(cpX, cpY, x2, y2);
+        ctx.strokeStyle = 'rgba(14,165,164,' + alpha + ')';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+
+      // Update dot connected class
+      dotElements.forEach(function (d, idx) {
+        if (connectedDots[idx]) {
+          d.classList.add('connected');
+        } else {
+          d.classList.remove('connected');
+        }
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    // Kickstart
+    spawnConnection();
+    setTimeout(spawnConnection, 800);
+    requestAnimationFrame(animate);
+
+    // ── Email form ──
     document.getElementById('f').addEventListener('submit', function (e) {
       e.preventDefault();
       var input = document.getElementById('e');
