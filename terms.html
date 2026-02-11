@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon-vibelive.png" type="image/png" />
+  <title>Terms of Service – VibeLive</title>
+  <meta name="description" content="VibeLive Terms of Service. Read our terms governing the use of VibeLive's real-time video infrastructure." />
+  <style>
+    :root {
+      --bg: #060606;
+      --surface: #0c0c0c;
+      --text: #e6f1f2;
+      --text-secondary: rgba(230,241,242,0.65);
+      --text-muted: rgba(230,241,242,0.40);
+      --border: rgba(230,241,242,0.08);
+      --accent: #0EA5A4;
+      --accent-hover: #0d9488;
+      --accent-subtle: rgba(14,165,164,0.15);
+      --focus: rgba(14,165,164,0.30);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6,6,6,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .logo span {
+      font-weight: 300;
+    }
+
+    .header-link {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .header-link:hover {
+      color: var(--text);
+    }
+
+    .header-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* ── Main Container ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    /* ── Title Block ── */
+    .title-block {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title-block h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .last-updated {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Intro ── */
+    .intro {
+      margin-bottom: 2.5rem;
+      font-size: 0.9375rem;
+      line-height: 1.75;
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    section h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      padding-top: 1rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    section h2 .section-num {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    section p {
+      margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
+    }
+
+    section ul {
+      margin: 0.5rem 0 0.75rem 0;
+      padding-left: 1.25rem;
+      list-style: none;
+    }
+
+    section ul li {
+      position: relative;
+      padding-left: 0.75rem;
+      margin-bottom: 0.375rem;
+      font-size: 0.9375rem;
+    }
+
+    section ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.625rem;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    /* ── Contact Block ── */
+    .contact-block {
+      padding: 1.25rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9375rem;
+    }
+
+    .contact-block p {
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-block a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-block a:hover {
+      color: var(--accent-hover);
+    }
+
+    .contact-block a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .footer-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer-logo {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-logo span {
+      font-weight: 300;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .footer-social a:hover {
+      color: var(--text);
+    }
+
+    .footer-social a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .footer-social svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover {
+      color: var(--text);
+    }
+
+    .footer-nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      main {
+        padding: 2.5rem 1.25rem 4rem;
+      }
+
+      .title-block h1 {
+        font-size: 1.5rem;
+      }
+
+      .toc {
+        padding: 1.25rem;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">Vibe<span>Live</span></a>
+      <a href="/" class="header-link">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Title -->
+    <div class="title-block">
+      <h1>Terms of Service</h1>
+      <p class="last-updated">Last Updated: February 2026</p>
+    </div>
+
+    <!-- Intro -->
+    <div class="intro">
+      <p>These Terms of Service (&ldquo;Terms&rdquo;) govern access to and use of VibeLive (the &ldquo;Service&rdquo;), a product operated by Tabbi AI, Inc., a Delaware corporation (&ldquo;VibeLive,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;).</p>
+      <p>By accessing or using the Service, you agree to these Terms. If you do not agree, do not use the Service.</p>
+    </div>
+
+    <!-- Sections -->
+    <section id="description">
+      <h2><span class="section-num">1.</span> Description of Service</h2>
+      <p>VibeLive provides real-time video and audio communication infrastructure designed for developers and builders to embed live video functionality into their applications. The Service may include:</p>
+      <ul>
+        <li>Real-time video and audio transmission</li>
+        <li>Screen sharing capabilities</li>
+        <li>Room creation and access via link or code</li>
+        <li>Metadata related to session operation</li>
+      </ul>
+      <p>VibeLive does not provide social networking services, content hosting, or content moderation.</p>
+    </section>
+
+    <section id="eligibility">
+      <h2><span class="section-num">2.</span> Eligibility</h2>
+      <p>You must be at least 13 years old to use the Service. If you are using VibeLive on behalf of a company or organization, you represent that you have authority to bind that entity to these Terms.</p>
+    </section>
+
+    <section id="developer-responsibility">
+      <h2><span class="section-num">3.</span> Developer Responsibility</h2>
+      <p>VibeLive is a neutral technology infrastructure provider. You are solely responsible for:</p>
+      <ul>
+        <li>The applications you build using VibeLive</li>
+        <li>All content transmitted through your implementation</li>
+        <li>Your end users</li>
+        <li>Compliance with applicable laws and regulations</li>
+        <li>Obtaining any required consents (including recording consent, if applicable)</li>
+      </ul>
+      <p>VibeLive does not monitor, control, or moderate communications transmitted using the Service.</p>
+    </section>
+
+    <section id="acceptable-use">
+      <h2><span class="section-num">4.</span> Acceptable Use</h2>
+      <p>You agree not to use the Service to:</p>
+      <ul>
+        <li>Violate any law or regulation</li>
+        <li>Transmit unlawful, harmful, abusive, or infringing content</li>
+        <li>Interfere with network integrity or security</li>
+        <li>Attempt unauthorized access to systems</li>
+        <li>Reverse engineer or misuse the Service</li>
+      </ul>
+      <p>We may suspend or terminate access if we determine misuse.</p>
+    </section>
+
+    <section id="accounts">
+      <h2><span class="section-num">5.</span> Accounts and Access</h2>
+      <p>Currently, VibeLive may allow guest participation without account creation. Future features may require account registration. You are responsible for maintaining the security of any credentials or access keys issued to you.</p>
+    </section>
+
+    <section id="data">
+      <h2><span class="section-num">6.</span> Data and Storage</h2>
+      <p>VibeLive does not currently store video recordings, audio recordings, or chat messages. VibeLive may store limited session metadata necessary to operate the Service.</p>
+      <p>If recording functionality is introduced in the future, additional terms may apply.</p>
+    </section>
+
+    <section id="payments">
+      <h2><span class="section-num">7.</span> Payments and Billing</h2>
+      <p>Paid plans are billed via Stripe on a recurring monthly basis. All fees are non-refundable unless required by law. We may:</p>
+      <ul>
+        <li>Suspend access for non-payment</li>
+        <li>Change pricing with reasonable notice</li>
+        <li>Modify plan features</li>
+      </ul>
+      <p>Taxes are your responsibility unless otherwise stated.</p>
+    </section>
+
+    <section id="ip">
+      <h2><span class="section-num">8.</span> Intellectual Property</h2>
+      <p>All rights, title, and interest in the Service remain with Tabbi AI, Inc. These Terms do not grant you ownership of the Service or underlying technology.</p>
+      <p>You retain ownership of content transmitted through your implementation.</p>
+    </section>
+
+    <section id="privacy">
+      <h2><span class="section-num">9.</span> Privacy</h2>
+      <p>Our <a href="/privacy.html">Privacy Policy</a> explains how we collect and use information. By using the Service, you agree to our Privacy Policy.</p>
+    </section>
+
+    <section id="disclaimers">
+      <h2><span class="section-num">10.</span> Disclaimers</h2>
+      <p>The Service is provided &ldquo;AS IS&rdquo; and &ldquo;AS AVAILABLE.&rdquo; We do not guarantee continuous availability, error-free operation, or compatibility with all environments. We disclaim all warranties to the fullest extent permitted by law.</p>
+    </section>
+
+    <section id="liability">
+      <h2><span class="section-num">11.</span> Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law: VibeLive&rsquo;s total liability arising out of or relating to the Service shall not exceed the lesser of $100 USD or the amount paid by you to VibeLive in the preceding 12 months.</p>
+      <p>We are not liable for indirect, incidental, special, consequential, or punitive damages.</p>
+    </section>
+
+    <section id="indemnification">
+      <h2><span class="section-num">12.</span> Indemnification</h2>
+      <p>You agree to indemnify and hold harmless Tabbi AI, Inc. from claims arising out of your use of the Service, your applications, your end users, or your violation of these Terms.</p>
+    </section>
+
+    <section id="termination">
+      <h2><span class="section-num">13.</span> Termination</h2>
+      <p>We may suspend or terminate access at our discretion, including for violation of these Terms. You may stop using the Service at any time.</p>
+    </section>
+
+    <section id="governing-law">
+      <h2><span class="section-num">14.</span> Governing Law</h2>
+      <p>These Terms are governed by the laws of the State of Delaware, without regard to conflict of law principles.</p>
+    </section>
+
+    <section id="changes">
+      <h2><span class="section-num">15.</span> Changes to Terms</h2>
+      <p>We may update these Terms from time to time. Continued use of the Service after changes means you accept the updated Terms.</p>
+    </section>
+
+    <section id="contact">
+      <h2><span class="section-num">16.</span> Contact</h2>
+      <div class="contact-block">
+        <p>Tabbi AI, Inc.</p>
+        <p><a href="mailto:hello@vibelive.site">hello@vibelive.site</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-left">
+          <a href="/" class="footer-logo">Vibe<span>Live</span></a>
+          <div class="footer-social">
+            <a href="https://x.com/vibelivehq" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://github.com/vibelive" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="https://docs.vibelive.site">Docs</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="mailto:hello@vibelive.site">Contact</a>
+        </nav>
+      </div>
+      <p class="footer-copy">&copy; 2026 VibeLive</p>
+    </div>
+  </footer>
+
+</body>
+</html>
