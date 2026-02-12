@@ -352,36 +352,52 @@
     <!-- Sections -->
     <section id="description">
       <h2><span class="section-num">1.</span> Description of Service</h2>
-      <p>VibeLive provides real-time video and audio communication infrastructure designed for developers and builders to embed live video functionality into their applications. The Service may include:</p>
+      <p>VibeLive provides real-time video and audio communication infrastructure designed for developers and builders to embed live video functionality into their applications.</p>
+      <p>The Service may include:</p>
       <ul>
         <li>Real-time video and audio transmission</li>
         <li>Screen sharing capabilities</li>
         <li>Room creation and access via link or code</li>
-        <li>Metadata related to session operation</li>
+        <li>Optional client-side recording capabilities</li>
+        <li>Storage of limited session metadata</li>
       </ul>
+      <p>Recording functionality, if enabled, is performed locally within the participant&rsquo;s browser or application environment. VibeLive does not store or retain video or audio recordings.</p>
       <p>VibeLive does not provide social networking services, content hosting, or content moderation.</p>
     </section>
 
     <section id="eligibility">
       <h2><span class="section-num">2.</span> Eligibility</h2>
-      <p>You must be at least 13 years old to use the Service. If you are using VibeLive on behalf of a company or organization, you represent that you have authority to bind that entity to these Terms.</p>
+      <p>You must be at least 13 years old to use the Service.</p>
+      <p>If you use VibeLive on behalf of a company or organization, you represent that you have authority to bind that entity to these Terms.</p>
+    </section>
+
+    <section id="accounts">
+      <h2><span class="section-num">3.</span> Accounts and Access</h2>
+      <p>VibeLive may allow:</p>
+      <ul>
+        <li>Account-based access</li>
+        <li>Guest participation without account creation</li>
+      </ul>
+      <p>You are responsible for maintaining the confidentiality of your credentials and access keys.</p>
     </section>
 
     <section id="developer-responsibility">
-      <h2><span class="section-num">3.</span> Developer Responsibility</h2>
-      <p>VibeLive is a neutral technology infrastructure provider. You are solely responsible for:</p>
+      <h2><span class="section-num">4.</span> Developer Responsibility</h2>
+      <p>VibeLive is a neutral technology infrastructure provider.</p>
+      <p>You are solely responsible for:</p>
       <ul>
         <li>The applications you build using VibeLive</li>
         <li>All content transmitted through your implementation</li>
+        <li>Any recordings generated through your implementation</li>
         <li>Your end users</li>
         <li>Compliance with applicable laws and regulations</li>
-        <li>Obtaining any required consents (including recording consent, if applicable)</li>
+        <li>Obtaining any legally required consents, including consent for recording or transcription</li>
       </ul>
-      <p>VibeLive does not monitor, control, or moderate communications transmitted using the Service.</p>
+      <p>VibeLive does not monitor, control, store, or moderate communications transmitted using the Service.</p>
     </section>
 
     <section id="acceptable-use">
-      <h2><span class="section-num">4.</span> Acceptable Use</h2>
+      <h2><span class="section-num">5.</span> Acceptable Use</h2>
       <p>You agree not to use the Service to:</p>
       <ul>
         <li>Violate any law or regulation</li>
@@ -393,23 +409,30 @@
       <p>We may suspend or terminate access if we determine misuse.</p>
     </section>
 
-    <section id="accounts">
-      <h2><span class="section-num">5.</span> Accounts and Access</h2>
-      <p>Currently, VibeLive may allow guest participation without account creation. Future features may require account registration. You are responsible for maintaining the security of any credentials or access keys issued to you.</p>
-    </section>
-
     <section id="data">
       <h2><span class="section-num">6.</span> Data and Storage</h2>
-      <p>VibeLive does not currently store video recordings, audio recordings, or chat messages. VibeLive may store limited session metadata necessary to operate the Service.</p>
-      <p>If recording functionality is introduced in the future, additional terms may apply.</p>
+      <p>VibeLive does not store:</p>
+      <ul>
+        <li>Video recordings</li>
+        <li>Audio recordings</li>
+        <li>Client-side recordings generated through developer applications</li>
+      </ul>
+      <p>Recording functionality, if enabled, occurs locally in the user&rsquo;s browser or application and is controlled by the developer.</p>
+      <p>VibeLive may store:</p>
+      <ul>
+        <li>Limited session metadata (such as room ID, timestamps, and participant counts)</li>
+        <li>Transcriptions when explicitly requested or enabled</li>
+      </ul>
+      <p>Developers are responsible for storage, management, and deletion of any recordings created through their applications.</p>
     </section>
 
     <section id="payments">
       <h2><span class="section-num">7.</span> Payments and Billing</h2>
-      <p>Paid plans are billed via Stripe on a recurring monthly basis. All fees are non-refundable unless required by law. We may:</p>
+      <p>Paid plans are billed via Stripe on a recurring monthly basis.</p>
+      <p>All fees are non-refundable unless required by law. We may:</p>
       <ul>
         <li>Suspend access for non-payment</li>
-        <li>Change pricing with reasonable notice</li>
+        <li>Modify pricing with reasonable notice</li>
         <li>Modify plan features</li>
       </ul>
       <p>Taxes are your responsibility unless otherwise stated.</p>
@@ -417,34 +440,55 @@
 
     <section id="ip">
       <h2><span class="section-num">8.</span> Intellectual Property</h2>
-      <p>All rights, title, and interest in the Service remain with Tabbi AI, Inc. These Terms do not grant you ownership of the Service or underlying technology.</p>
+      <p>All rights, title, and interest in the Service remain with Tabbi AI, Inc.</p>
+      <p>These Terms do not grant you ownership of the Service or underlying technology.</p>
       <p>You retain ownership of content transmitted through your implementation.</p>
     </section>
 
     <section id="privacy">
       <h2><span class="section-num">9.</span> Privacy</h2>
-      <p>Our <a href="/privacy.html">Privacy Policy</a> explains how we collect and use information. By using the Service, you agree to our Privacy Policy.</p>
+      <p>Our <a href="/privacy.html">Privacy Policy</a> explains how we collect and use information.</p>
+      <p>By using the Service, you agree to our Privacy Policy.</p>
     </section>
 
     <section id="disclaimers">
       <h2><span class="section-num">10.</span> Disclaimers</h2>
-      <p>The Service is provided &ldquo;AS IS&rdquo; and &ldquo;AS AVAILABLE.&rdquo; We do not guarantee continuous availability, error-free operation, or compatibility with all environments. We disclaim all warranties to the fullest extent permitted by law.</p>
+      <p>The Service is provided &ldquo;AS IS&rdquo; and &ldquo;AS AVAILABLE.&rdquo;</p>
+      <p>We do not guarantee:</p>
+      <ul>
+        <li>Continuous availability</li>
+        <li>Error-free operation</li>
+        <li>Compatibility with all environments</li>
+      </ul>
+      <p>We disclaim all warranties to the fullest extent permitted by law.</p>
     </section>
 
     <section id="liability">
       <h2><span class="section-num">11.</span> Limitation of Liability</h2>
-      <p>To the maximum extent permitted by law: VibeLive&rsquo;s total liability arising out of or relating to the Service shall not exceed the lesser of $100 USD or the amount paid by you to VibeLive in the preceding 12 months.</p>
+      <p>To the maximum extent permitted by law:</p>
+      <p>VibeLive&rsquo;s total liability arising out of or relating to the Service shall not exceed the lesser of:</p>
+      <ul>
+        <li>$100 USD; or</li>
+        <li>The amount paid by you to VibeLive in the preceding 12 months.</li>
+      </ul>
       <p>We are not liable for indirect, incidental, special, consequential, or punitive damages.</p>
     </section>
 
     <section id="indemnification">
       <h2><span class="section-num">12.</span> Indemnification</h2>
-      <p>You agree to indemnify and hold harmless Tabbi AI, Inc. from claims arising out of your use of the Service, your applications, your end users, or your violation of these Terms.</p>
+      <p>You agree to indemnify and hold harmless Tabbi AI, Inc. from claims arising out of:</p>
+      <ul>
+        <li>Your use of the Service</li>
+        <li>Your applications</li>
+        <li>Your end users</li>
+        <li>Your violation of these Terms</li>
+      </ul>
     </section>
 
     <section id="termination">
       <h2><span class="section-num">13.</span> Termination</h2>
-      <p>We may suspend or terminate access at our discretion, including for violation of these Terms. You may stop using the Service at any time.</p>
+      <p>We may suspend or terminate access at our discretion, including for violation of these Terms.</p>
+      <p>You may stop using the Service at any time.</p>
     </section>
 
     <section id="governing-law">
@@ -454,7 +498,8 @@
 
     <section id="changes">
       <h2><span class="section-num">15.</span> Changes to Terms</h2>
-      <p>We may update these Terms from time to time. Continued use of the Service after changes means you accept the updated Terms.</p>
+      <p>We may update these Terms from time to time.</p>
+      <p>Continued use of the Service after changes means you accept the updated Terms.</p>
     </section>
 
     <section id="contact">
